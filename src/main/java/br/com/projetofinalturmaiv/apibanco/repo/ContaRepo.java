@@ -12,6 +12,6 @@ public interface ContaRepo extends CrudRepository<Conta, Integer> {
 
 	public ArrayList<Conta> findByOrderByCliente();
 	
-//	public ArrayList<Conta> findByOrderById();
+	public ArrayList<Conta> findByOrderById();
 	
 }
