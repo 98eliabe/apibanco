@@ -7,6 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 import br.com.projetofinalturmaiv.apibanco.model.Cliente;
 
 public interface ClienteRepo extends CrudRepository<Cliente, Integer> {
+	
+	
 	public ArrayList<Cliente> findAll();
 
 	public ArrayList<Cliente> findByOrderById();
