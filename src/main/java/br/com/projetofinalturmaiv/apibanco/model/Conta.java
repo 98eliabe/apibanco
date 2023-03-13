@@ -1,6 +1,5 @@
 package br.com.projetofinalturmaiv.apibanco.model;
 
-import br.com.isidrocorp.loja.model.Departamento;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
