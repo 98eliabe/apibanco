@@ -46,8 +46,6 @@ public class ClienteController {
 			return ResponseEntity.badRequest().build();
 		}
 	
-
-	
 }
 	
 	
