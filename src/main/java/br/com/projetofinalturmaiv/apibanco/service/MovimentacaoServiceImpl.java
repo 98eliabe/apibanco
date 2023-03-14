@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.projetofinalturmaiv.apibanco.model.Movimentacao;
+import br.com.projetofinalturmaiv.apibanco.repo.MovimentacaoRepo;
 
 public class MovimentacaoServiceImpl implements IMovimentacaoService {
 	@Autowired
