@@ -40,7 +40,7 @@ public class ClienteController {
 	public ResponseEntity<?> cadastrarNovo(@RequestBody Cliente novo) {
 		Cliente res = service.cadastrarNovo(novo);
 		if (res != null) {
-			return ResponseEntity.ok(res);
+			return ResponseEntity.status(201).body(res);
 		}
 		return ResponseEntity.badRequest().build();
 	}
