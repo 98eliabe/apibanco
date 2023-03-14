@@ -34,7 +34,7 @@ public class Movimentacao {
 	
 	@ManyToOne
 	@JoinColumn(name = "numero_conta")
-	private Conta numeroConta;
+	private Conta conta;
 
 	public int getNumeroMovimentacao() {
 		return numeroMovimentacao;
@@ -76,12 +76,12 @@ public class Movimentacao {
 		this.descricao = descricao;
 	}
 
-	public Conta getNumeroConta() {
-		return numeroConta;
+	public Conta getConta() {
+		return conta;
 	}
 
-	public void setNumeroConta(Conta numeroConta) {
-		this.numeroConta = numeroConta;
+	public void setConta(Conta numeroConta) {
+		this.conta = numeroConta;
 	}
 
 	

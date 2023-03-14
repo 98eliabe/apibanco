@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.projetofinalturmaiv.apibanco.model.Conta;
 import br.com.projetofinalturmaiv.apibanco.model.Movimentacao;
 import br.com.projetofinalturmaiv.apibanco.repo.MovimentacaoRepo;
 
@@ -14,9 +15,9 @@ public class MovimentacaoServiceImpl implements IMovimentacaoService {
 	private MovimentacaoRepo repo;
 
 	@Override
-	public ArrayList<Movimentacao> recuperarTodas() {
+	public ArrayList<Movimentacao> recuperarTodasPorConta(Conta c) {
 		// TODO Auto-generated method stub
-		return (ArrayList<Movimentacao>) repo.findAll();
+		return repo.findByConta(c);
 	}
 	
 	@Override

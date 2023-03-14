@@ -33,7 +33,7 @@ public class MovimentacaoController {
 	public ResponseEntity<ArrayList<Movimentacao>> recuperarTodas(@PathVariable int id) {
 		Conta conta = new Conta();
 		conta.setNumeroConta(id);
-		ArrayList<Movimentacao> m = service.recuperarTodas();
+		ArrayList<Movimentacao> m = service.recuperarTodasPorConta(conta);
 		if (m != null) {
 			return ResponseEntity.ok(m); 
 		}
