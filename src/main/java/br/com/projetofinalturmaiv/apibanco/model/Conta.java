@@ -69,6 +69,21 @@ public class Conta {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+	public Conta() {
+		super();
+	}
+
+	public Conta(int numeroConta, int agencia, int tipoConta, double saldo, Cliente cliente) {
+		super();
+		this.numeroConta = numeroConta;
+		this.agencia = agencia;
+		this.tipoConta = tipoConta;
+		this.saldo = saldo;
+		this.cliente = cliente;
+	}
+	
+	
 	
 	
 }
