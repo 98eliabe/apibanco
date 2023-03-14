@@ -56,4 +56,18 @@ public class Cliente {
 		this.telefone = telefone;
 	}
 
+	public Cliente() {
+		super();
+	}
+
+	public Cliente(int id, String nome, String cpf, String telefone) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.telefone = telefone;
+	}
+
+	
+	
 }

@@ -29,9 +29,6 @@ public class ClienteServiceImpl implements IClienteService {
 	@Override
 	public Cliente cadastrarNovo(Cliente novo) {
 		// TODO Auto-generated method stub
-		if (novo.getId() == 0) {
-			return null;
-		}
 		return repo.save(novo);
 	}
 
