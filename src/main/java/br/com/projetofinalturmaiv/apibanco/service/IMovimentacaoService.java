@@ -6,8 +6,8 @@ import br.com.projetofinalturmaiv.apibanco.model.Movimentacao;
 
 public interface IMovimentacaoService {
 
-	public ArrayList<Movimentacao> recuperarTodas();
-
 	public Movimentacao cadastrarNova(Movimentacao nova);
+
+	public ArrayList<Movimentacao> recuperarTodas();
 
 }

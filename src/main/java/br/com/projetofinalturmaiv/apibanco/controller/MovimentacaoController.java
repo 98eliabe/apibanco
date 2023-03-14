@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projetofinalturmaiv.apibanco.model.Movimentacao;
+import br.com.projetofinalturmaiv.apibanco.model.Conta;
 import br.com.projetofinalturmaiv.apibanco.service.IMovimentacaoService;
 
 @RestController
@@ -18,12 +20,26 @@ public class MovimentacaoController {
 	@Autowired
 	private IMovimentacaoService service;
 	
-	@GetMapping("/movimentacao")
-	public ArrayList<Movimentacao> recuperarTodas() {
-
-		return service.recuperarTodas();
-	}
+	/*@GetMapping("/movimentacao/{id}")
+	public ResponseEntity<Movimentacao> recuperarTodas(@PathVariable Conta numeroConta) {
+		Movimentacao m = service.recuperarTodas(numeroConta);
+		if (m != null) {
+			return ResponseEntity.ok(m); 
+		}
+		return ResponseEntity.notFound().build();
+	}*/
 	
+	@GetMapping("/movimentacao/{id}")
+	public ResponseEntity<ArrayList<Movimentacao>> recuperarTodas(@PathVariable int id) {
+		Conta conta = new Conta();
+		conta.setNumeroConta(id);
+		ArrayList<Movimentacao> m = service.recuperarTodas();
+		if (m != null) {
+			return ResponseEntity.ok(m); 
+		}
+		return ResponseEntity.notFound().build();
+	}
+		
 	@PostMapping("/movimentacao")
 	public ResponseEntity<?> cadastrarNova(@RequestBody Movimentacao novo) {
 		Movimentacao res = service.cadastrarNova(novo);

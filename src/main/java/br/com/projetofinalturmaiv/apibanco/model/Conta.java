@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,7 +26,7 @@ public class Conta {
 	@Column(name = "saldo")
 	private double saldo; 
 	
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
