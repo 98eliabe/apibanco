@@ -34,8 +34,6 @@ public class ClienteController {
 		return ResponseEntity.notFound().build();
 	}
 
-	
-
 	@PostMapping("/cliente")
 	public ResponseEntity<Cliente> cadastrarNovo(@RequestBody Cliente novo) {
 		Cliente res = service.cadastrarNovo(novo);

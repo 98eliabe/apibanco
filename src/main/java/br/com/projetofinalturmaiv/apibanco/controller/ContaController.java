@@ -46,13 +46,7 @@ public class ContaController {
 		return ResponseEntity.notFound().build();
 	}
 	
-	/*@GetMapping("/conta/cliente/{id}")
-	public ArrayList <Conta> recuperarPeloIdCliente (@PathVariable int id){
-		Cliente c = new Cliente();
-		c.setId(id);
-		return service.recuperarPeloIdCliente(c);
-	}*/
-
+	
 	@PostMapping("/conta")
 	public ResponseEntity<?> cadastrarNova(@RequestBody Conta conta) {
 		Conta res = service.cadastrarNova(conta);

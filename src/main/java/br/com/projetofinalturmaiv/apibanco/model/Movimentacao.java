@@ -14,24 +14,24 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "tbl_movimentacao")
 public class Movimentacao {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "num_seq")
 	private int numeroMovimentacao;
-	
+
 	@Column(name = "data_operacao")
 	private LocalDate data;
-	
+
 	@Column(name = "valor")
 	private double valor;
-	
+
 	@Column(name = "tipo_operacao")
 	private int tipoMovimentacao;
-	
+
 	@Column(name = "descricao")
 	private String descricao;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "numero_conta")
 	private Conta conta;
@@ -84,5 +84,4 @@ public class Movimentacao {
 		this.conta = numeroConta;
 	}
 
-	
 }

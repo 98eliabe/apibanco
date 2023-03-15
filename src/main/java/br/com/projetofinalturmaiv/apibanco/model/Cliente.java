@@ -15,13 +15,13 @@ public class Cliente {
 	@Column(name = "id_cliente")
 	private int id;
 
-	@Column(name = "nome_cliente", nullable = false, length =100)
+	@Column(name = "nome_cliente", nullable = false, length = 100)
 	private String nome;
 
-	@Column(name = "cpf_cliente", nullable = false, length = 20, unique=true)
+	@Column(name = "cpf_cliente", nullable = false, length = 20, unique = true)
 	private String cpf;
 
-	@Column(name = "telefone_cliente", nullable = false, length =20, unique=true)
+	@Column(name = "telefone_cliente", nullable = false, length = 20, unique = true)
 	private String telefone;
 
 	public int getId() {
@@ -68,6 +68,4 @@ public class Cliente {
 		this.telefone = telefone;
 	}
 
-	
-	
 }

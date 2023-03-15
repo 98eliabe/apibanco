@@ -19,13 +19,11 @@ public class MovimentacaoServiceImpl implements IMovimentacaoService {
 		// TODO Auto-generated method stub
 		return repo.findByConta(c);
 	}
-	
+
 	@Override
 	public Movimentacao cadastrarNova(Movimentacao nova) {
 		// TODO Auto-generated method stub
 		return repo.save(nova);
 	}
-
-
 
 }

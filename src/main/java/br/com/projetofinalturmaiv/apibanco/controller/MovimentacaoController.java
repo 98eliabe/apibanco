@@ -19,27 +19,18 @@ public class MovimentacaoController {
 
 	@Autowired
 	private IMovimentacaoService service;
-	
-	/*@GetMapping("/movimentacao/{id}")
-	public ResponseEntity<Movimentacao> recuperarTodas(@PathVariable Conta numeroConta) {
-		Movimentacao m = service.recuperarTodas(numeroConta);
-		if (m != null) {
-			return ResponseEntity.ok(m); 
-		}
-		return ResponseEntity.notFound().build();
-	}*/
-	
+
 	@GetMapping("/movimentacao/{id}")
 	public ResponseEntity<ArrayList<Movimentacao>> recuperarTodas(@PathVariable int id) {
 		Conta conta = new Conta();
 		conta.setNumeroConta(id);
 		ArrayList<Movimentacao> m = service.recuperarTodasPorConta(conta);
 		if (m != null) {
-			return ResponseEntity.ok(m); 
+			return ResponseEntity.ok(m);
 		}
 		return ResponseEntity.notFound().build();
 	}
-		
+
 	@PostMapping("/movimentacao")
 	public ResponseEntity<?> cadastrarNova(@RequestBody Movimentacao novo) {
 		Movimentacao res = service.cadastrarNova(novo);
@@ -48,5 +39,5 @@ public class MovimentacaoController {
 		}
 		return ResponseEntity.badRequest().build();
 	}
-	
+
 }

@@ -39,9 +39,5 @@ public class ContaServiceImpl implements IContaService {
 		// TODO Auto-generated method stub
 		return repo.findByCliente(cliente);
 
-		// @Override
-		// public ArrayList<Movimentacao> recuperarTodasPorConta(Conta c) {
-		// TODO Auto-generated method stub
-		// return repo.findByConta(c);
 	}
 }
