@@ -33,6 +33,7 @@ public class MovimentacaoController {
 
 	@PostMapping("/movimentacao")
 	public ResponseEntity<?> cadastrarNova(@RequestBody Movimentacao novo) {
+		
 		Movimentacao res = service.cadastrarNova(novo);
 		if (res != null) {
 			return ResponseEntity.ok(res);

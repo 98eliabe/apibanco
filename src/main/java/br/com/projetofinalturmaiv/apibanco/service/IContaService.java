@@ -13,4 +13,6 @@ public interface IContaService {
 	public ArrayList<Conta> recuperarPeloIdCliente(Cliente cliente);
 
 	public Conta cadastrarNova(Conta conta);
+	
+	public Conta atualizarConta (Conta conta);
 }

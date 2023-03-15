@@ -40,4 +40,10 @@ public class ContaServiceImpl implements IContaService {
 		return repo.findByCliente(cliente);
 
 	}
+
+	@Override
+	public Conta atualizarConta(Conta conta) {
+		// TODO Auto-generated method stub
+		return repo.save(conta);
+	}
 }
