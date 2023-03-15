@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.projetofinalturmaiv.apibanco.model.Cliente;
 import br.com.projetofinalturmaiv.apibanco.model.Conta;
 import br.com.projetofinalturmaiv.apibanco.service.IContaService;
 
 @RestController
 public class ContaController {
-	
+
 	@Autowired
 	private IContaService service;
 
@@ -24,6 +25,7 @@ public class ContaController {
 
 		return service.recuperarTodas();
 	}
+
 	@GetMapping("/conta/{id}")
 	public ResponseEntity<Conta> recuperarPeloId(@PathVariable int id) {
 		Conta cnt = service.recuperarPeloId(id);
@@ -32,6 +34,25 @@ public class ContaController {
 		}
 		return ResponseEntity.notFound().build();
 	}
+
+	@GetMapping("/conta/cliente/{id}")
+	public ResponseEntity<ArrayList<Conta>> recuperarPeloIdCliente(@PathVariable int id) {
+		Cliente cliente = new Cliente();
+		cliente.setId(id);
+		ArrayList<Conta> res = service.recuperarPeloIdCliente(cliente);
+		if (res != null) {
+			return ResponseEntity.ok(res);
+		}
+		return ResponseEntity.notFound().build();
+	}
+	
+	/*@GetMapping("/conta/cliente/{id}")
+	public ArrayList <Conta> recuperarPeloIdCliente (@PathVariable int id){
+		Cliente c = new Cliente();
+		c.setId(id);
+		return service.recuperarPeloIdCliente(c);
+	}*/
+
 	@PostMapping("/conta")
 	public ResponseEntity<?> cadastrarNova(@RequestBody Conta conta) {
 		Conta res = service.cadastrarNova(conta);
@@ -41,18 +62,4 @@ public class ContaController {
 		return ResponseEntity.badRequest().build();
 	}
 
-
-	
-	
-	
-	
-	}
-	
-		
-	
-	
-	
-	
-	
-
-
+}

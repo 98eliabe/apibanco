@@ -10,5 +10,7 @@ import br.com.projetofinalturmaiv.apibanco.model.Conta;
 public interface ContaRepo extends CrudRepository<Conta, Integer> {
 	
 	public ArrayList<Conta> findByCliente(Cliente cliente);
+	
+	//public ArrayList<Conta> findByIdCliente(Cliente cliente);
 		
 }

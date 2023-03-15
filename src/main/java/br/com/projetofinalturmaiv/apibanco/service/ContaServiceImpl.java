@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.projetofinalturmaiv.apibanco.model.Cliente;
 import br.com.projetofinalturmaiv.apibanco.model.Conta;
 import br.com.projetofinalturmaiv.apibanco.repo.ContaRepo;
 
 @Component
 public class ContaServiceImpl implements IContaService {
-	
+
 	@Autowired
 	private ContaRepo repo;
 
@@ -30,7 +31,17 @@ public class ContaServiceImpl implements IContaService {
 	public Conta cadastrarNova(Conta conta) {
 		// TODO Auto-generated method stub
 		return repo.save(conta);
+
 	}
 
-	
+	@Override
+	public ArrayList<Conta> recuperarPeloIdCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		return repo.findByCliente(cliente);
+
+		// @Override
+		// public ArrayList<Movimentacao> recuperarTodasPorConta(Conta c) {
+		// TODO Auto-generated method stub
+		// return repo.findByConta(c);
+	}
 }
