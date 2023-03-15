@@ -34,5 +34,19 @@ public class MovimentacaoServiceImpl implements IMovimentacaoService {
 			}return null;
 		
 	}
+
+	@Override
+	public boolean transferirValores(int contaOrigem, int contaDestino, double valor) {
+		Conta origem = service.recuperarPeloId(contaOrigem);
+        Conta destino = service.recuperarPeloId(contaDestino);
+        if (origem.getSaldo() >= valor) {
+        	origem.setSaldo(origem.getSaldo()+valor*-1);
+            destino.setSaldo(destino.getSaldo()+valor);
+            service.atualizarConta(origem);
+            service.atualizarConta(destino);
+        	return true;
+        }
+        return false;
+	}
 	
 }

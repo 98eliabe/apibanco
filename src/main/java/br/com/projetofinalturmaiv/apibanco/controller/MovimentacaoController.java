@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projetofinalturmaiv.apibanco.model.Movimentacao;
 import br.com.projetofinalturmaiv.apibanco.model.Conta;
+import br.com.projetofinalturmaiv.apibanco.model.Movimentacao;
 import br.com.projetofinalturmaiv.apibanco.service.IMovimentacaoService;
 
 @RestController
@@ -41,4 +42,16 @@ public class MovimentacaoController {
 		return ResponseEntity.badRequest().build();
 	}
 
+	@PostMapping("/transferencia")
+	public ResponseEntity<?> cadastrarNova(	@RequestParam("origem") int contaOrigem,
+											@RequestParam("destino") int contaDestino,
+											@RequestParam("valor") double valor) {
+		boolean res = service.transferirValores(contaOrigem, contaDestino, valor);
+        if (res) {
+            return ResponseEntity.ok("Transferência realizada com sucesso");
+        } else {
+            return ResponseEntity.badRequest().body("Conta de origem não tem saldo suficiente");
+        }
+	}
+	
 }
