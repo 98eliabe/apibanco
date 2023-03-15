@@ -1,5 +1,6 @@
 package br.com.projetofinalturmaiv.apibanco.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,18 @@ public class MovimentacaoController {
         } else {
             return ResponseEntity.badRequest().body("Conta de origem não tem saldo suficiente");
         }
+	}
+	
+	@GetMapping("/extrato")
+	public ResponseEntity<ArrayList<Movimentacao>> recuperarTodasPorPeriodo(	@RequestParam("conta") int idConta,
+																				@RequestParam("datainicio") String dataInicio,
+																				@RequestParam("datafim") String dataFim) {
+		ArrayList<Movimentacao> res = service.recuperarTodasPorPeriodo(idConta, LocalDate.parse(dataInicio), LocalDate.parse(dataFim));
+		if (res != null) {
+			return ResponseEntity.ok(res);
+		}
+		return ResponseEntity.notFound().build();
+
 	}
 	
 }

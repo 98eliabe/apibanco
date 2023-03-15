@@ -1,5 +1,6 @@
 package br.com.projetofinalturmaiv.apibanco.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +45,32 @@ public class MovimentacaoServiceImpl implements IMovimentacaoService {
             destino.setSaldo(destino.getSaldo()+valor);
             service.atualizarConta(origem);
             service.atualizarConta(destino);
+            Movimentacao m1 = new Movimentacao();
+            m1.setTipoMovimentacao(-1);
+            m1.setConta(origem);
+            m1.setData(LocalDate.now());
+            m1.setValor(valor);
+            m1.setDescricao("Transferência debitada da conta");
+            Movimentacao m2 = new Movimentacao();
+            m2.setTipoMovimentacao(1);
+            m2.setConta(destino);
+            m2.setData(LocalDate.now());
+            m2.setValor(valor);
+            m2.setDescricao("Transferência creditada na conta");
+            repo.save(m1);
+            repo.save(m2);
         	return true;
         }
         return false;
+	}
+
+	@Override
+	public ArrayList<Movimentacao> recuperarTodasPorPeriodo(int idConta, LocalDate dataInicio, LocalDate dataFinal) {
+		Conta conta = service.recuperarPeloId(idConta);
+		if (conta != null) {
+			return repo.findByContaAndDataBetween(conta, dataInicio, dataFinal);
+		}
+		return null;
 	}
 	
 }
