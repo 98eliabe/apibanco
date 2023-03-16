@@ -48,7 +48,7 @@ public class ContaController {
 
 	@PostMapping("/conta")
 	public ResponseEntity<?> cadastrarNova(@RequestBody Conta conta) {
-		if (conta.getAgencia() > 0 && conta.getTipoConta() > 0 && conta.getSaldo() >= 0) {
+		if (conta.getAgencia() > 0 && conta.getTipoConta() > 0 && conta.getTipoConta() <4 && conta.getSaldo() >= 0) {
 			Conta res = service.cadastrarNova(conta);
 			return ResponseEntity.ok(res);
 		}
