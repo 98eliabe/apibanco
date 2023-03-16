@@ -72,5 +72,12 @@ public class MovimentacaoServiceImpl implements IMovimentacaoService {
 		}
 		return null;
 	}
+
+	@Override
+	public ArrayList<Movimentacao> recuperarPorPeriodo(LocalDate dataInicio, LocalDate dataFim) {
+		// TODO Auto-generated method stub
+		
+		return (ArrayList<Movimentacao>) repo.findByDataBetween(dataInicio, dataFim);
+	}
 	
 }

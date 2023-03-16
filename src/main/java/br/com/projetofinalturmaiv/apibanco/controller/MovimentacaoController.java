@@ -66,5 +66,14 @@ public class MovimentacaoController {
 		return ResponseEntity.notFound().build();
 
 	}
-	
+	@GetMapping("/movimentacao")
+	public ResponseEntity <ArrayList<Movimentacao>> recuperarPorPeriodo(@RequestParam("datainicio") String dataInicio,
+																		@RequestParam("datafim") String dataFim) {
+		ArrayList<Movimentacao> res = service.recuperarPorPeriodo(LocalDate.parse(dataInicio), LocalDate.parse(dataFim));
+		if (res != null) {
+			return ResponseEntity.ok(res);
+		}
+		return ResponseEntity.notFound().build();
+
+}
 }

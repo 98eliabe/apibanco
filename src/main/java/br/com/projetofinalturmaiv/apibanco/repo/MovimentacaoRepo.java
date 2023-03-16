@@ -14,4 +14,5 @@ public interface MovimentacaoRepo extends CrudRepository<Movimentacao, Integer> 
 
 	public ArrayList<Movimentacao> findByContaAndDataBetween(Conta conta, LocalDate dataInicio, LocalDate dataFinal);
 	
+	public ArrayList<Movimentacao> findByDataBetween (LocalDate dataInicio, LocalDate dataFinal);
 }
