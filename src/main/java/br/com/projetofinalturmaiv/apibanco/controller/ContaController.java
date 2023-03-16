@@ -45,15 +45,15 @@ public class ContaController {
 		}
 		return ResponseEntity.notFound().build();
 	}
-	
-	
+
 	@PostMapping("/conta")
 	public ResponseEntity<?> cadastrarNova(@RequestBody Conta conta) {
-		Conta res = service.cadastrarNova(conta);
-		if (res != null) {
+		if (conta.getAgencia() > 0 && conta.getTipoConta() > 0 && conta.getSaldo() >= 0) {
+			Conta res = service.cadastrarNova(conta);
 			return ResponseEntity.ok(res);
 		}
-		return ResponseEntity.badRequest().build();
+		return ResponseEntity.badRequest().body("Dados inválidos. Conta não cadastrada");
+
 	}
 
 }

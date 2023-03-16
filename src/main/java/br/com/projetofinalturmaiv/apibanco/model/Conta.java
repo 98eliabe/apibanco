@@ -16,16 +16,16 @@ public class Conta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "numero_conta")
 	private int numeroConta;
-	
+
 	@Column(name = "agencia", nullable = false)
 	private int agencia;
-	
+
 	@Column(name = "tipo_conta", nullable = false)
 	private int tipoConta;
-	
+
 	@Column(name = "saldo")
-	private double saldo; 
-	
+	private double saldo;
+
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
@@ -82,8 +82,5 @@ public class Conta {
 		this.saldo = saldo;
 		this.cliente = cliente;
 	}
-	
-	
-	
-	
+
 }

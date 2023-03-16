@@ -17,7 +17,7 @@ public class MovimentacaoServiceImpl implements IMovimentacaoService {
 
 	@Autowired
 	private IContaService service;
-	
+
 	@Override
 	public ArrayList<Movimentacao> recuperarTodasPorConta(Conta c) {
 		// TODO Auto-generated method stub
@@ -28,40 +28,41 @@ public class MovimentacaoServiceImpl implements IMovimentacaoService {
 	public Movimentacao cadastrarNova(Movimentacao nova) {
 		// TODO Auto-generated method stub
 		Conta c = service.recuperarPeloId(nova.getConta().getNumeroConta());
-			if (c != null) {
-				c.setSaldo(c.getSaldo()+nova.getValor()*nova.getTipoMovimentacao());
-				service.atualizarConta(c);
-				return repo.save(nova);
-			}return null;
-		
+		if (c != null) {
+			c.setSaldo(c.getSaldo() + nova.getValor() * nova.getTipoMovimentacao());
+			service.atualizarConta(c);
+			return repo.save(nova);
+		}
+		return null;
+
 	}
 
 	@Override
 	public boolean transferirValores(int contaOrigem, int contaDestino, double valor) {
 		Conta origem = service.recuperarPeloId(contaOrigem);
-        Conta destino = service.recuperarPeloId(contaDestino);
-        if (origem.getSaldo() >= valor) {
-        	origem.setSaldo(origem.getSaldo()+valor*-1);
-            destino.setSaldo(destino.getSaldo()+valor);
-            service.atualizarConta(origem);
-            service.atualizarConta(destino);
-            Movimentacao m1 = new Movimentacao();
-            m1.setTipoMovimentacao(-1);
-            m1.setConta(origem);
-            m1.setData(LocalDate.now());
-            m1.setValor(valor);
-            m1.setDescricao("Transferência debitada da conta");
-            Movimentacao m2 = new Movimentacao();
-            m2.setTipoMovimentacao(1);
-            m2.setConta(destino);
-            m2.setData(LocalDate.now());
-            m2.setValor(valor);
-            m2.setDescricao("Transferência creditada na conta");
-            repo.save(m1);
-            repo.save(m2);
-        	return true;
-        }
-        return false;
+		Conta destino = service.recuperarPeloId(contaDestino);
+		if (origem.getSaldo() >= valor) {
+			origem.setSaldo(origem.getSaldo() + valor * -1);
+			destino.setSaldo(destino.getSaldo() + valor);
+			service.atualizarConta(origem);
+			service.atualizarConta(destino);
+			Movimentacao m1 = new Movimentacao();
+			m1.setTipoMovimentacao(-1);
+			m1.setConta(origem);
+			m1.setData(LocalDate.now());
+			m1.setValor(valor);
+			m1.setDescricao("Transferência debitada da conta");
+			Movimentacao m2 = new Movimentacao();
+			m2.setTipoMovimentacao(1);
+			m2.setConta(destino);
+			m2.setData(LocalDate.now());
+			m2.setValor(valor);
+			m2.setDescricao("Transferência creditada na conta");
+			repo.save(m1);
+			repo.save(m2);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -76,8 +77,8 @@ public class MovimentacaoServiceImpl implements IMovimentacaoService {
 	@Override
 	public ArrayList<Movimentacao> recuperarPorPeriodo(LocalDate dataInicio, LocalDate dataFim) {
 		// TODO Auto-generated method stub
-		
+
 		return (ArrayList<Movimentacao>) repo.findByDataBetween(dataInicio, dataFim);
 	}
-	
+
 }

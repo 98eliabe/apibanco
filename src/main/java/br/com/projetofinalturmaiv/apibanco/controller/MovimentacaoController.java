@@ -19,6 +19,7 @@ import br.com.projetofinalturmaiv.apibanco.service.IMovimentacaoService;
 @RestController
 public class MovimentacaoController {
 
+	private static final LocalDate LocalDate = null;
 	@Autowired
 	private IMovimentacaoService service;
 
@@ -35,45 +36,46 @@ public class MovimentacaoController {
 
 	@PostMapping("/movimentacao")
 	public ResponseEntity<?> cadastrarNova(@RequestBody Movimentacao novo) {
-		
-		Movimentacao res = service.cadastrarNova(novo);
-		if (res != null) {
+		if (novo.getData().isEqual(LocalDate.now()) && novo.getValor() > 0 && novo.getTipoMovimentacao() == 1
+				|| novo.getData().isEqual(LocalDate.now()) && novo.getValor() > 0 && novo.getTipoMovimentacao() == -1) {
+			Movimentacao res = service.cadastrarNova(novo);
 			return ResponseEntity.ok(res);
 		}
-		return ResponseEntity.badRequest().build();
+		return ResponseEntity.badRequest().body("Dados inválidos. Transferencia não realizada");
 	}
 
 	@PostMapping("/transferencia")
-	public ResponseEntity<?> cadastrarNova(	@RequestParam("origem") int contaOrigem,
-											@RequestParam("destino") int contaDestino,
-											@RequestParam("valor") double valor) {
+	public ResponseEntity<?> cadastrarNova(@RequestParam("origem") int contaOrigem,
+			@RequestParam("destino") int contaDestino, @RequestParam("valor") double valor) {
 		boolean res = service.transferirValores(contaOrigem, contaDestino, valor);
-        if (res) {
-            return ResponseEntity.ok("Transferência realizada com sucesso");
-        } else {
-            return ResponseEntity.badRequest().body("Conta de origem não tem saldo suficiente");
-        }
+		if (res) {
+			return ResponseEntity.ok("Transferência realizada com sucesso");
+		} else {
+			return ResponseEntity.badRequest().body("Conta de origem não tem saldo suficiente");
+		}
 	}
-	
+
 	@GetMapping("/extrato")
-	public ResponseEntity<ArrayList<Movimentacao>> recuperarTodasPorPeriodo(	@RequestParam("conta") int idConta,
-																				@RequestParam("datainicio") String dataInicio,
-																				@RequestParam("datafim") String dataFim) {
-		ArrayList<Movimentacao> res = service.recuperarTodasPorPeriodo(idConta, LocalDate.parse(dataInicio), LocalDate.parse(dataFim));
+	public ResponseEntity<ArrayList<Movimentacao>> recuperarTodasPorPeriodo(@RequestParam("conta") int idConta,
+			@RequestParam("datainicio") String dataInicio, @RequestParam("datafim") String dataFim) {
+		ArrayList<Movimentacao> res = service.recuperarTodasPorPeriodo(idConta, LocalDate.parse(dataInicio),
+				LocalDate.parse(dataFim));
 		if (res != null) {
 			return ResponseEntity.ok(res);
 		}
 		return ResponseEntity.notFound().build();
 
 	}
+
 	@GetMapping("/movimentacao")
-	public ResponseEntity <ArrayList<Movimentacao>> recuperarPorPeriodo(@RequestParam("datainicio") String dataInicio,
-																		@RequestParam("datafim") String dataFim) {
-		ArrayList<Movimentacao> res = service.recuperarPorPeriodo(LocalDate.parse(dataInicio), LocalDate.parse(dataFim));
+	public ResponseEntity<ArrayList<Movimentacao>> recuperarPorPeriodo(@RequestParam("datainicio") String dataInicio,
+			@RequestParam("datafim") String dataFim) {
+		ArrayList<Movimentacao> res = service.recuperarPorPeriodo(LocalDate.parse(dataInicio),
+				LocalDate.parse(dataFim));
 		if (res != null) {
 			return ResponseEntity.ok(res);
 		}
 		return ResponseEntity.notFound().build();
 
-}
+	}
 }

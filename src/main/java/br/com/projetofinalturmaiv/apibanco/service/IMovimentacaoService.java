@@ -11,10 +11,10 @@ public interface IMovimentacaoService {
 	public Movimentacao cadastrarNova(Movimentacao nova);
 
 	public ArrayList<Movimentacao> recuperarTodasPorConta(Conta c);
-	
+
 	public ArrayList<Movimentacao> recuperarTodasPorPeriodo(int idConta, LocalDate dataInicio, LocalDate dataFinal);
-	
+
 	public boolean transferirValores(int contaOrigem, int contaDestino, double valor);
 
-	public ArrayList<Movimentacao> recuperarPorPeriodo (LocalDate dataInicio, LocalDate dataFim);
+	public ArrayList<Movimentacao> recuperarPorPeriodo(LocalDate dataInicio, LocalDate dataFim);
 }

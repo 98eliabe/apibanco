@@ -35,12 +35,12 @@ public class ClienteController {
 	}
 
 	@PostMapping("/cliente")
-	public ResponseEntity<Cliente> cadastrarNovo(@RequestBody Cliente novo) {
-		Cliente res = service.cadastrarNovo(novo);
-		if (res != null) {
+	public ResponseEntity<?> cadastrarNovo(@RequestBody Cliente novo) {
+		if (novo.getNome() != null && novo.getCpf() != null && novo.getTelefone() != null) {
+			Cliente res = service.cadastrarNovo(novo);
 			return ResponseEntity.status(201).body(res);
 		}
-		return ResponseEntity.badRequest().build();
+		return ResponseEntity.badRequest().body("Dados inválidos. Cliente não cadastrado");
 	}
 
 }
