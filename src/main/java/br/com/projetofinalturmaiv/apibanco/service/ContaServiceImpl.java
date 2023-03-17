@@ -44,6 +44,9 @@ public class ContaServiceImpl implements IContaService {
 	@Override
 	public Conta atualizarConta(Conta conta) {
 		// TODO Auto-generated method stub
+		if (conta.getNumeroConta()==0) {
+			return null;
+		}
 		return repo.save(conta);
 	}
 }

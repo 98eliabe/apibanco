@@ -15,4 +15,5 @@ public interface IContaService {
 	public Conta cadastrarNova(Conta conta);
 	
 	public Conta atualizarConta (Conta conta);
+	
 }

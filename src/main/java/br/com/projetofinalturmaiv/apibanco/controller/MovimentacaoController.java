@@ -47,6 +47,9 @@ public class MovimentacaoController {
 	@PostMapping("/transferencia")
 	public ResponseEntity<?> cadastrarNova(@RequestParam("origem") int contaOrigem,
 			@RequestParam("destino") int contaDestino, @RequestParam("valor") double valor) {
+		if (valor <= 0) {
+			return ResponseEntity.badRequest().body("O valor informado é inválido");
+		}
 		boolean res = service.transferirValores(contaOrigem, contaDestino, valor);
 		if (res) {
 			return ResponseEntity.ok("Transferência realizada com sucesso");
