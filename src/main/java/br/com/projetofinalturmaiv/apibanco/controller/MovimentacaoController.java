@@ -71,10 +71,10 @@ public class MovimentacaoController {
 	}
 
 	@GetMapping("/movimentacao")
-	public ResponseEntity<ArrayList<Movimentacao>> recuperarPorPeriodo(@RequestParam("datainicio") String dataInicio,
-			@RequestParam("datafim") String dataFim) {
-		ArrayList<Movimentacao> res = service.recuperarPorPeriodo(LocalDate.parse(dataInicio),
-				LocalDate.parse(dataFim));
+	public ResponseEntity<ArrayList<Movimentacao>> recuperarPorPeriodoValor(@RequestParam("datainicio") String dataInicio,
+			@RequestParam("datafim") String dataFim, @RequestParam("valor") double valor) {
+		ArrayList<Movimentacao> res = service.recuperarPorPeriodoValor(LocalDate.parse(dataInicio),
+				LocalDate.parse(dataFim), valor);
 		if (res != null) {
 			return ResponseEntity.ok(res);
 		}

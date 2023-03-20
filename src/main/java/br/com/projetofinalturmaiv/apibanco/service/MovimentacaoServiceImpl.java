@@ -17,6 +17,7 @@ public class MovimentacaoServiceImpl implements IMovimentacaoService {
 
 	@Autowired
 	private IContaService service;
+	
 
 	@Override
 	public ArrayList<Movimentacao> recuperarTodasPorConta(Conta c) {
@@ -75,10 +76,8 @@ public class MovimentacaoServiceImpl implements IMovimentacaoService {
 	}
 
 	@Override
-	public ArrayList<Movimentacao> recuperarPorPeriodo(LocalDate dataInicio, LocalDate dataFim) {
-		// TODO Auto-generated method stub
-
-		return (ArrayList<Movimentacao>) repo.findByDataBetween(dataInicio, dataFim);
+	public ArrayList<Movimentacao> recuperarPorPeriodoValor(LocalDate dataInicio, LocalDate dataFim, double valor) {
+		return (ArrayList<Movimentacao>) repo.findByValorGreaterThanEqualAndDataBetween(valor, dataInicio, dataFim);	
 	}
 
 }

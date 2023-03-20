@@ -16,5 +16,6 @@ public interface IMovimentacaoService {
 
 	public boolean transferirValores(int contaOrigem, int contaDestino, double valor);
 
-	public ArrayList<Movimentacao> recuperarPorPeriodo(LocalDate dataInicio, LocalDate dataFim);
+	public ArrayList<Movimentacao> recuperarPorPeriodoValor(LocalDate dataInicio, LocalDate dataFim, double valor);
+
 }
